@@ -41,3 +41,12 @@ graph TD
     A --> C(Control Module<br>Perform BLE ops on connected device)
     B --> D[BLE Module<br>Handles BLE API logic]
     C --> D
+
+    %% Styling
+    classDef app fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef feature fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef core fill:#bfb,stroke:#333,stroke-width:2px;
+
+    class A app;
+    class B,C feature;
+    class D core;
