@@ -37,8 +37,8 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 ```mermaid
 graph TD;
     app["📱 App Module"]
-    home["🏠 Home Module<br>Scan & Connect BLE"]
-    control["🎛️ Control Module<br>Perform BLE Ops"]
+    home["🏠 Home Module<br>Scan & Connect"]
+    control["🎛️ Control Module<br>Connected Device Operations"]
     ble["📡 BLE Module<br>Handles BLE API"]
 
     app --> home
@@ -46,21 +46,3 @@ graph TD;
     home --> ble
     control --> ble
 ```
-
-
-
-```mermaid
-graph TD
-    A[App Module<br>Main application] --> B(Home Module<br>Scan and connect to BLE)
-    A --> C(Control Module<br>Ble Operations on connected device)
-    B --> D[BLE Module<br>Handles BLE API logic]
-    C --> D
-
-    %% Styling
-    classDef app fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef feature fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef core fill:#bfb,stroke:#333,stroke-width:2px;
-
-    class A app;
-    class B,C feature;
-    class D core;
