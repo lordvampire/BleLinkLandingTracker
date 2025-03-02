@@ -35,9 +35,12 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 
 ## 🏗 ## Project Structure
 
-   ```mermaid
-graph TD;
-    App --> Home
-    App --> Control
-    Home --> BLE
-    Control --> BLE
+```mermaid
+graph TD
+    A[App Module] --> B(Home Module)
+    A --> C(Control Module)
+    B --> D[BLE Module]
+    C --> D
+    B -->|Scan & Connect BLE| B
+    C -->|Perform BLE Ops| C
+    D -->|Handles BLE API Logic| D
