@@ -37,10 +37,7 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 
 ```mermaid
 graph TD
-    A[App Module] --> B(Home Module)
-    A --> C(Control Module)
-    B --> D[BLE Module]
+    A[App Module<br>Main application] --> B(Home Module<br>Scan and connect to BLE)
+    A --> C(Control Module<br>Perform BLE ops on connected device)
+    B --> D[BLE Module<br>Handles BLE API logic]
     C --> D
-    B -->|Scan & Connect BLE| B
-    C -->|Perform BLE Ops| C
-    D -->|Handles BLE API Logic| D
