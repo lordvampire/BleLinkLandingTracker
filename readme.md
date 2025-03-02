@@ -34,6 +34,17 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 | **Notify** | Subscribes to real-time updates | Device sends periodic data updates |
 
 ## 🏗 ## Project Structure
+graph TD
+app[App Module]
+app --> home[Home Module]
+app --> control[Control Module]
+home --> ble[BLE Module]
+control --> ble[BLE Module]
+
+    style app fill:#1f77b4,stroke:#333,stroke-width:2px
+    style home fill:#ffcc00,stroke:#333,stroke-width:2px
+    style control fill:#ff6600,stroke:#333,stroke-width:2px
+    style ble fill:#66cc66,stroke:#333,stroke-width:2px
 
 ```mermaid
 graph TD
