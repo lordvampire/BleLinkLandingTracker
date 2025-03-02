@@ -1,4 +1,4 @@
-# 🚀 Bluetooth LE App - Jetpack Compose & Kotlin
+# 🚀 BleLink - Bluetooth LE App
 
 An Android app built with **Jetpack Compose**, **Kotlin** that enables Bluetooth Low Energy (BLE) communication.
 The app allows users to **scan for BLE devices**, **connect**, **explore services, characteristics, and descriptors**, and **perform read/write operations**.
@@ -33,13 +33,11 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 | **Write** | Writes data to a characteristic | `byteArrayOf(0xA1, 0xB2, 0xC3)` |
 | **Notify** | Subscribes to real-time updates | Device sends periodic data updates |
 
-## 🏗 Architecture
+## 🏗 ## Project Structure
 
-The app follows the **MVVM (Model-View-ViewModel) architecture**, ensuring a clean separation of concerns:
-
-📂 app
-├── 📂 di # Hilt Dependency Injection
-├── 📂 ui # Jetpack Compose UI
-├── 📂 bluetooth # BLE Logic
-├── 📂 viewmodel # Business Logic
-└── 📂 repository # Data Management
+   ```mermaid
+graph TD;
+    App --> Home
+    App --> Control
+    Home --> BLE
+    Control --> BLE
