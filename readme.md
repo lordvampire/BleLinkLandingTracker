@@ -37,16 +37,15 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 ```mermaid
 graph TD;
     app["📱 App Module"]
-    home["🏠 Home Module\n(Scan & Connect BLE)"]
-    control["🎛️ Control Module\n(Perform BLE Ops)"]
-    ble["📡 BLE Module\n(Handles BLE API)"]
+    home["🏠 Home Module<br>Scan & Connect BLE"]
+    control["🎛️ Control Module<br>Perform BLE Ops"]
+    ble["📡 BLE Module<br>Handles BLE API"]
 
     app --> home
     app --> control
     home --> ble
     control --> ble
 ```
-
 
 
 
