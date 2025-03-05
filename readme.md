@@ -4,7 +4,6 @@ An Android app built with **Jetpack Compose**, **Kotlin** that enables Bluetooth
 The app allows users to **scan for BLE devices**, **connect**, **explore services, characteristics, and descriptors**, and **perform read/write operations**.
 
 ## 🛠 Features
-
 - 🔍 Scan for nearby Bluetooth LE devices
 - 🔗 Connect and disconnect from BLE devices
 - 📜 Discover services, characteristics, and descriptors
@@ -16,7 +15,6 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 
 
 ## 📦 Tech Stack
-
 - **Language:** Kotlin
 - **UI Framework:** Jetpack Compose
 - **Dependency Injection:** Hilt
@@ -25,9 +23,23 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 - **Architecture:** MVVM
 
 
-## 🔹 Important Notes
+## 🔍 Xiaomi Mi Band 4C UUID & Manufacturer Resolution
 
-- The app assumes that **BluetoothGattCharacteristic UUIDs** are unique. It does not perform additional checks for duplicate UUIDs.
+- The app currently **resolves some Xiaomi Mi Band 4C services, characteristics, and descriptor UUIDs** to their related functions.
+    - For example, UUID `00001800-0000-1000-8000-00805f9b34fb` corresponds to the **Generic Access** service.
+- The app also **resolves a few manufacturer IDs** to their respective names.
+
+### 🛠️ How to Edit Known UUIDs
+If you want to modify the **known UUIDs** for your BLE device:
+1. Open the following file in the app’s source code:
+   ```plaintext
+   /core/ble/util/BleResolvers.kt
+    ```
+2. Edit the maps inside the file to update the UUID-function mappings or manufacturer ID resolutions.
+
+
+## 🔹 Important Notes
+- The app assumes that **BluetoothGattCharacteristic UUIDs** are unique.It does not perform additional checks for duplicate UUIDs.
 - The app **does not verify descriptor permissions** before performing read or write operations.
 
 ### ⚠ Why?
@@ -41,6 +53,7 @@ If you still want to enforce permission checks for descriptors:
    /core/ble/model/modelmapper/BluetoothGattDescriptorModelMapper.kt
     ```
 2. Replace the current permission values with the commented-out code inside the file to enable proper permission checking.
+
 
 ## 🏗 ## Project Structure
 ```mermaid
