@@ -16,7 +16,7 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 
 ## 📸 Screenshots
 
-<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap; background-color: #FFB6C1; padding: 20px;">
   <img src="assets/screenshots/1.jpg" width="200" style="border-radius: 25px; margin: 10px;" alt="Screenshot 1">
   <img src="assets/screenshots/2.jpg" width="200" style="border-radius: 25px; margin: 10px;" alt="Screenshot 2">
   <img src="assets/screenshots/3.jpg" width="200" style="border-radius: 25px; margin: 10px;" alt="Screenshot 3">
