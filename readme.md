@@ -14,9 +14,9 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 - 🏗 Modular architecture with Hilt for Dependency Injection
 - 📱 Modern UI with Jetpack Compose
 
-### 📸 Screenshots
+## 📸 Screenshots
 
-<table>
+<table style="border: none;">
   <tr>
     <td><img src="assets/screenshots/1.jpg" width="250" style="border-radius: 25px;" alt="Screenshot 1"></td>
     <td><img src="assets/screenshots/2.jpg" width="250" style="border-radius: 25px;" alt="Screenshot 2"></td>
