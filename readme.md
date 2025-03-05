@@ -14,14 +14,12 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 - 📱 Modern UI with Jetpack Compose
 
 ### 📸 Screenshots
-<table>
-  <tr>
-    <td><img src="assets/screenshots/1.jpg" width="250" style="border-radius: 25px;"></td>
-    <td><img src="assets/screenshots/2.jpg" width="250" style="border-radius: 25px;"></td>
-    <td><img src="assets/screenshots/3.jpg" width="250" style="border-radius: 25px;"></td>
-    <td><img src="assets/screenshots/4.jpg" width="250" style="border-radius: 25px;"></td>
-  </tr>
-</table>
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+  <img src="assets/screenshots/1.jpg" alt="Screenshot 1" style="width: 200px; border-radius: 20px; margin: 10px;">
+  <img src="assets/screenshots/2.jpg" alt="Screenshot 2" style="width: 200px; border-radius: 20px; margin: 10px;">
+  <img src="assets/screenshots/3.jpg" alt="Screenshot 3" style="width: 200px; border-radius: 20px; margin: 10px;">
+  <img src="assets/screenshots/4.jpg" alt="Screenshot 4" style="width: 200px; border-radius: 20px; margin: 10px;">
+</div>
 
 
 ## 📦 Tech Stack
