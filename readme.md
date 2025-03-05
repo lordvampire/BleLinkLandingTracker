@@ -16,15 +16,12 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 
 ## 📸 Screenshots
 
-<table style="border: none;">
-  <tr>
-    <td><img src="assets/screenshots/1.jpg" width="250" style="border-radius: 25px;" alt="Screenshot 1"></td>
-    <td><img src="assets/screenshots/2.jpg" width="250" style="border-radius: 25px;" alt="Screenshot 2"></td>
-    <td><img src="assets/screenshots/3.jpg" width="250" style="border-radius: 25px;" alt="Screenshot 3"></td>
-    <td><img src="assets/screenshots/4.jpg" width="250" style="border-radius: 25px;" alt="Screenshot 4"></td>
-  </tr>
-</table>
-
+<div style="display: flex; justify-content: space-between;">
+  <img src="assets/screenshots/1.jpg" width="250" style="border-radius: 25px;" alt="Screenshot 1">
+  <img src="assets/screenshots/2.jpg" width="250" style="border-radius: 25px;" alt="Screenshot 2">
+  <img src="assets/screenshots/3.jpg" width="250" style="border-radius: 25px;" alt="Screenshot 3">
+  <img src="assets/screenshots/4.jpg" width="250" style="border-radius: 25px;" alt="Screenshot 4">
+</div>
 
 ## 📦 Tech Stack
 
