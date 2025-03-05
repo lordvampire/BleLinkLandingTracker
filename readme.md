@@ -23,7 +23,7 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 - **Architecture:** MVVM
 
 
-## 🔍 Xiaomi Mi Band 4C UUID & Manufacturer Resolution
+## 🔍 UUIDs & Manufacturer Ids Resolution
 
 - The app currently **resolves some Xiaomi Mi Band 4C services, characteristics, and descriptor UUIDs** to their related functions.
     - For example, UUID `00001800-0000-1000-8000-00805f9b34fb` corresponds to the **Generic Access** service.
@@ -55,7 +55,7 @@ If you still want to enforce permission checks for descriptors:
 2. Replace the current permission values with the commented-out code inside the file to enable proper permission checking.
 
 
-## 🏗 ## Project Structure
+## 🏗 Project Structure
 ```mermaid
 graph TD;
     app["📱 App Module"]
