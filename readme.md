@@ -14,10 +14,10 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 - 📱 Modern UI with Jetpack Compose
 
 ### 📸 Screenshots
-<img src="assets/screenshots/1.png" width="300">  
-<img src="assets/screenshots/2.png" width="300">  
-<img src="assets/screenshots/3.png" width="300">  
-<img src="assets/screenshots/4.png" width="300">  
+<img src="assets/screenshots/1.jpg" width="300">  
+<img src="assets/screenshots/2.jpg" width="300">  
+<img src="assets/screenshots/3.jpg" width="300">  
+<img src="assets/screenshots/4.jpg" width="300">  
 
 
 ## 📦 Tech Stack
