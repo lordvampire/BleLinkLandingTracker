@@ -13,6 +13,12 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 - 🏗 Modular architecture with Hilt for Dependency Injection
 - 📱 Modern UI with Jetpack Compose
 
+### 📸 Screenshots
+<img src="assets/screenshots/1.png" width="300">  
+<img src="assets/screenshots/2.png" width="300">  
+<img src="assets/screenshots/3.png" width="300">  
+<img src="assets/screenshots/4.png" width="300">  
+
 
 ## 📦 Tech Stack
 - **Language:** Kotlin

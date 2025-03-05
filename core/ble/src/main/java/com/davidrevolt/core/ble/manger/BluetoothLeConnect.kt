@@ -21,7 +21,7 @@ import androidx.annotation.RequiresPermission
 import androidx.core.content.ContextCompat
 import com.davidrevolt.core.ble.model.CustomGattService
 import com.davidrevolt.core.ble.model.modelmapper.asCustomGattService
-import com.davidrevolt.core.ble.util.BleNamesResolver.containsProperty
+import com.davidrevolt.core.ble.util.containsProperty
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

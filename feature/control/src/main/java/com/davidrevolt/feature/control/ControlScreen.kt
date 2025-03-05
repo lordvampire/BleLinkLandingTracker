@@ -521,7 +521,7 @@ fun CharacteristicItem(
                             shape = RoundedCornerShape(8.dp),
                             modifier = Modifier.weight(1f)
                         ) {
-                            Text("Enable Notifications")
+                            Text(text = "Notify")
                         }
                     }
                 }
