@@ -4,6 +4,7 @@ An Android app built with **Jetpack Compose**, **Kotlin** that enables Bluetooth
 The app allows users to **scan for BLE devices**, **connect**, **explore services, characteristics, and descriptors**, and **perform read/write operations**.
 
 ## 🛠 Features
+
 - 🔍 Scan for nearby Bluetooth LE devices
 - 🔗 Connect and disconnect from BLE devices
 - 📜 Discover services, characteristics, and descriptors
@@ -14,6 +15,7 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 - 📱 Modern UI with Jetpack Compose
 
 ### 📸 Screenshots
+
 <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
   <img src="assets/screenshots/1.jpg" alt="Screenshot 1" style="width: 200px; border-radius: 20px; margin: 10px;">
   <img src="assets/screenshots/2.jpg" alt="Screenshot 2" style="width: 200px; border-radius: 20px; margin: 10px;">
@@ -23,6 +25,7 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 
 
 ## 📦 Tech Stack
+
 - **Language:** Kotlin
 - **UI Framework:** Jetpack Compose
 - **Dependency Injection:** Hilt
@@ -38,6 +41,7 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 - The app also **resolves a few manufacturer IDs** to their respective names.
 
 ### 🛠️ How to Edit Known UUIDs
+
 If you want to modify the **known UUIDs** for your BLE device:
 1. Open the following file in the app’s source code:
    ```plaintext
@@ -47,14 +51,17 @@ If you want to modify the **known UUIDs** for your BLE device:
 
 
 ## 🔹 Important Notes
+
 - The app assumes that **BluetoothGattCharacteristic UUIDs** are unique.It does not perform additional checks for duplicate UUIDs.
 - The app **does not verify descriptor permissions** before performing read or write operations.
 
 ### ⚠ Why?
+
 The **Android SDK’s `getPermissions()` method** always returns `false`, meaning the permission flags often **do not accurately reflect** whether a descriptor is actually readable or writable.
 As a result, checking permissions before performing operations may lead to unnecessary restrictions or incorrect assumptions.
 
 ### 🛠️ How to Enable Descriptor Permission Checks
+
 If you still want to enforce permission checks for descriptors:
 1. Navigate to the following file in the app's source code:
    ```plaintext
@@ -64,6 +71,7 @@ If you still want to enforce permission checks for descriptors:
 
 
 ## 🏗 Project Structure
+
 ```mermaid
 graph TD;
     app["📱 App Module"]
