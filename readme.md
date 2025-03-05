@@ -16,10 +16,10 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 ### 📸 Screenshots
 <table>
   <tr>
-    <td><img src="assets/screenshots/1.jpg" width="250" style="border-radius: 20px;"></td>
-    <td><img src="assets/screenshots/2.jpg" width="250" style="border-radius: 20px;"></td>
-    <td><img src="assets/screenshots/3.jpg" width="250" style="border-radius: 20px;"></td>
-    <td><img src="assets/screenshots/4.jpg" width="250" style="border-radius: 20px;"></td>
+    <td><img src="assets/screenshots/1.jpg" width="250" style="border-radius: 25px;"></td>
+    <td><img src="assets/screenshots/2.jpg" width="250" style="border-radius: 25px;"></td>
+    <td><img src="assets/screenshots/3.jpg" width="250" style="border-radius: 25px;"></td>
+    <td><img src="assets/screenshots/4.jpg" width="250" style="border-radius: 25px;"></td>
   </tr>
 </table>
 
