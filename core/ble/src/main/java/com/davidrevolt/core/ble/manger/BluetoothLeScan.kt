@@ -7,16 +7,11 @@ import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
 import android.bluetooth.le.ScanSettings
 import android.content.Context
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.toMutableStateList
 import androidx.core.content.ContextCompat
 import com.davidrevolt.core.ble.model.CustomScanResult
 import com.davidrevolt.core.ble.model.modelmapper.asCustomScanResult
-
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,17 +25,12 @@ Online Guide: https://punchthrough.com/android-ble-guide/
 * IMPORTANT: Make sure user Device Bluetooth is enabled otherwise adapter.scanner is null.
 * IMPORTANT: You should always stop your BLE scan before connecting to a BLE device.
 
-* ScanFilter - set the filtering criteria,
-Easiest way to make sure an app only ever picks up devices running said custom firmware is to
-generate a random UUID, and have the firmware advertise this UUID.
-
 * Rssi - signal strength of the advertising BluetoothLe device, measured in dBm.
 Sorting scan results by descending order of signal strength is a good way
 to find the peripheral closest to the Android device
 
 * Warning: a device implementing Bluetooth 4.2’s LE Privacy feature will
 randomize its public MAC address periodically
-
 
 * Scan settings:
 Most apps that are scanning in the foreground should use SCAN_MODE_BALANCED [30sec scan].
@@ -49,7 +39,6 @@ typically to find a very specific type of device.
 SCAN_MODE_LOW_POWER is used for extremely long-duration scans, or for scans that take place in the background
  */
 
-// todo: throw exceptions
 class BluetoothLeScan @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
@@ -98,8 +87,8 @@ class BluetoothLeScan @Inject constructor(
 
         override fun onScanFailed(errorCode: Int) {
             _isScanning.value = false
-            throw Exception("Scan Failed: code $errorCode")
             Log.e(TAG, "onScanFailed: code $errorCode")
+            throw Exception("Scan Failed: code $errorCode")
         }
     }
 
@@ -120,6 +109,7 @@ class BluetoothLeScan @Inject constructor(
             Log.i(TAG, "Bluetooth scan start")
         } else {
             Log.e(TAG, "Device doesn't support Bluetooth or Bluetooth is disabled")
+            throw Exception("Device doesn't support Bluetooth or Bluetooth is disabled")
         }
     }
 

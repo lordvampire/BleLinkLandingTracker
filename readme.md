@@ -25,13 +25,22 @@ The app allows users to **scan for BLE devices**, **connect**, **explore service
 - **Architecture:** MVVM
 
 
-## 🔌 BLE Commands & Data Format
+## 🔹 Important Notes
 
-| **Operation** | **Description** | **Example Data** |
-|--------------|---------------|------------------|
-| **Read** | Reads data from a characteristic | `byteArrayOf(0x00, 0x01, 0x02)` |
-| **Write** | Writes data to a characteristic | `byteArrayOf(0xA1, 0xB2, 0xC3)` |
-| **Notify** | Subscribes to real-time updates | Device sends periodic data updates |
+- The app assumes that **BluetoothGattCharacteristic UUIDs** are unique. It does not perform additional checks for duplicate UUIDs.
+- The app **does not verify descriptor permissions** before performing read or write operations.
+
+### ⚠ Why?
+The **Android SDK’s `getPermissions()` method** always returns `false`, meaning the permission flags often **do not accurately reflect** whether a descriptor is actually readable or writable.
+As a result, checking permissions before performing operations may lead to unnecessary restrictions or incorrect assumptions.
+
+### 🛠️ How to Enable Descriptor Permission Checks
+If you still want to enforce permission checks for descriptors:
+1. Navigate to the following file in the app's source code:
+   ```plaintext
+   /core/ble/model/modelmapper/BluetoothGattDescriptorModelMapper.kt
+    ```
+2. Replace the current permission values with the commented-out code inside the file to enable proper permission checking.
 
 ## 🏗 ## Project Structure
 ```mermaid

@@ -1,6 +1,5 @@
 package com.davidrevolt.feature.control
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,9 +21,11 @@ class ControlViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
+    // Get it from NavGraph
+    private val bleDeviceName: String = checkNotNull(savedStateHandle[DEVICE_NAME])
     private val bleDeviceAddress: String = checkNotNull(savedStateHandle[DEVICE_ADDRESS])
 
-    // Used to send msg to snackbar //TODO
+    // Used to send msg to snackbar
     private val _uiEvent = MutableSharedFlow<UiEvent>()
     val uiEvent = _uiEvent.asSharedFlow()
 
@@ -33,6 +34,7 @@ class ControlViewModel @Inject constructor(
         bluetoothLeService.getDeviceServices()
     ) { connectionState, deviceServices ->
         ControlUiState.Data(
+            deviceName=bleDeviceName,
             deviceAddress = bleDeviceAddress,
             connectionState = connectionState,
             deviceServices = deviceServices
@@ -53,17 +55,7 @@ class ControlViewModel @Inject constructor(
             try {
                 bluetoothLeService.connectToDeviceGatt(deviceAddress = bleDeviceAddress)
             } catch (e: Exception) {
-                Log.e(TAG, "${e.message}")
-            }
-        }
-    }
-
-    fun disconnectFromGatt() {
-        viewModelScope.launch {
-            try {
-                bluetoothLeService.disconnectFromGatt()
-            } catch (e: Exception) {
-                Log.e(TAG, "${e.message}")
+                _uiEvent.emit(UiEvent.ShowSnackbar("${e.message}"))
             }
         }
     }
@@ -73,7 +65,7 @@ class ControlViewModel @Inject constructor(
             try {
                 bluetoothLeService.readCharacteristic(characteristicUUID)
             } catch (e: Exception) {
-                Log.e(TAG, "${e.message}")
+                _uiEvent.emit(UiEvent.ShowSnackbar("${e.message}"))
             }
         }
     }
@@ -119,6 +111,10 @@ class ControlViewModel @Inject constructor(
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        bluetoothLeService.disconnectFromGatt()
+    }
 
     companion object {
         const val TAG = "BleLink-Log"
@@ -127,6 +123,7 @@ class ControlViewModel @Inject constructor(
 
 sealed interface ControlUiState {
     data class Data(
+        val deviceName: String,
         val deviceAddress: String,
         val connectionState: Int,
         val deviceServices: List<CustomGattService>

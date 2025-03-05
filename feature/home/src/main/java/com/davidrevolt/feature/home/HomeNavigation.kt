@@ -14,7 +14,7 @@ fun NavController.navigateToHome(navOptions: NavOptions? = null) {
 }
 
 @RequiresApi(Build.VERSION_CODES.S)
-fun NavGraphBuilder.homeScreen(onConnectClick: (deviceAddress: String) -> Unit) {
+fun NavGraphBuilder.homeScreen(onConnectClick: (deviceName: String, deviceAddress: String) -> Unit) {
     composable(route = HOME_ROUTE) {
         HomeScreen(onConnectClick = onConnectClick)
     }

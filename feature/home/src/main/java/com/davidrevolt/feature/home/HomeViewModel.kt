@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// todo: snackbars
+
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val bluetoothLeService: BluetoothLeService,

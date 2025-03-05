@@ -11,7 +11,8 @@ import com.davidrevolt.blelink.navigation.AppNavHost
 
 @Composable
 fun App(appState: AppState = rememberAppState()) {
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+    Scaffold(modifier = Modifier.fillMaxSize()
+    ) { innerPadding ->
         Column(
             modifier = Modifier.padding(innerPadding)
         ) {

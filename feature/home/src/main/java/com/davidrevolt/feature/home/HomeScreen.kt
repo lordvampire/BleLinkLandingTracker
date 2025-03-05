@@ -70,7 +70,7 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun HomeScreen(
-    onConnectClick: (deviceAddress: String) -> Unit,
+    onConnectClick: (deviceName: String, deviceAddress: String) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.homeUiState.collectAsStateWithLifecycle()
@@ -122,7 +122,7 @@ private fun HomeScreenContent(
     scanResults: List<CustomScanResult>,
     startBluetoothLeScan: () -> Unit,
     stopBluetoothLeScan: () -> Unit,
-    onConnectClick: (deviceAddress: String) -> Unit,
+    onConnectClick: (deviceName: String, deviceAddress: String) -> Unit,
     snackbarHostState: SnackbarHostState,
 ) {
     val context = LocalContext.current
@@ -254,9 +254,9 @@ private fun HomeScreenContent(
                 ) {
                     scanResults.forEach { result ->
                         item {
-                            DeviceItem(
+                            ScanResultItem(
                                 scanResult = result,
-                                onConnectClick = { onConnectClick(result.address) }
+                                onConnectClick = { onConnectClick(result.name, result.address) }
                             )
                         }
                     }
@@ -267,7 +267,7 @@ private fun HomeScreenContent(
 }
 
 @Composable
-fun DeviceItem(
+fun ScanResultItem(
     scanResult: CustomScanResult,
     onConnectClick: () -> Unit
 ) {
@@ -297,11 +297,16 @@ fun DeviceItem(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = scanResult.name ?: "Unknown Device",
+                    text = scanResult.name,
                     style = MaterialTheme.typography.titleMedium
                 )
                 Text(
                     text = scanResult.address,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Text(
+                    text = scanResult.manufacturer,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

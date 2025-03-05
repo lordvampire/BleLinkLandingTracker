@@ -21,6 +21,6 @@ fun AppNavHost(appState: AppState) {
         startDestination = startDestination
     ) {
         homeScreen(onConnectClick = navController::navigateToControl)
-        controlScreen()
+        controlScreen(onBackClick = navController::popBackStack)
     }
 }

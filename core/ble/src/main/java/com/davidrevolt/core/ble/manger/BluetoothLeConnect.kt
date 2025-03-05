@@ -30,9 +30,7 @@ import javax.inject.Inject
 
 
 /*
-Connect to a GATT server hosted by device., The caller (the Android app) is the GATT client
-Online Guide: https://punchthrough.com/android-ble-guide/
-
+* Online Guide: https://punchthrough.com/android-ble-guide/
 * IMPORTANT: You should always stop your BLE scan before connecting to a BLE device.
 */
 
@@ -52,8 +50,7 @@ class BluetoothLeConnect @Inject constructor(
     fun getConnectionState() = _connectionState.asStateFlow()
     fun getDeviceServices() = _deviceServices.asStateFlow()
 
-    // Holds all the BluetoothGattCharacteristic of the device
-    // Todo: See if can delete this and do gatt.findchar(uuid) instead
+    // Holds all the BluetoothGattCharacteristic of the device assuming all uuids are unique
     private val _availableCharacteristics = mutableMapOf<UUID, BluetoothGattCharacteristic>()
 
 
@@ -61,11 +58,12 @@ class BluetoothLeConnect @Inject constructor(
     fun connectToDeviceGatt(deviceAddress: String) {
         _connectionState.value = BluetoothProfile.STATE_CONNECTING
         val device = _bluetoothAdapter?.getRemoteLeDevice(deviceAddress, ADDRESS_TYPE_PUBLIC)
-        device?.createBond() //TODO: check if needed
+       // device?.createBond() //Automatically created
         if (device?.bondState == BluetoothDevice.BOND_BONDED) {
-            Log.d(TAG, "Device is already bonded!")
+            Log.i(TAG, "Device is bonded!")
         } else {
-            Log.d(TAG, "Device is not bonded, attempting to bond...")
+            Log.e(TAG, "Device is not bonded, attempting to bond...")
+            device?.createBond()
         }
         _bluetoothGatt = device?.connectGatt(context, false, gattCallback, TRANSPORT_LE)
     }
@@ -270,7 +268,6 @@ class BluetoothLeConnect @Inject constructor(
                     TAG,
                     "Successfully read characteristic ${characteristic.uuid}:\n${value.toHexString()}"
                 )
-                // Log.i("AppLog", "Read characteristic ${value.toString(Charsets.UTF_8)}")
                 val newList = _deviceServices.value.map { customGattService ->
                     customGattService.copy(characteristics = customGattService.characteristics.map {
                         if (it.uuid == characteristic.uuid)
@@ -312,7 +309,6 @@ class BluetoothLeConnect @Inject constructor(
                 TAG,
                 "Characteristic ${characteristic.uuid} changed its value to:\n${value.toHexString()}"
             )
-            // TODO: this code also appear in onCharacteristicRead - for updating the data class
             val newList = _deviceServices.value.map { customGattService ->
                 customGattService.copy(characteristics = customGattService.characteristics.map {
                     if (it.uuid == characteristic.uuid)
@@ -348,7 +344,7 @@ class BluetoothLeConnect @Inject constructor(
                 }
                 _deviceServices.value = newList
             } else {
-                val msg = "Characteristic read failed for ${descriptor.uuid}, status: $status"
+                val msg = "Descriptor read failed for ${descriptor.uuid}, status: $status"
                 Log.e(TAG, msg)
                 throw Exception(msg)
             }
@@ -361,9 +357,9 @@ class BluetoothLeConnect @Inject constructor(
             status: Int
         ) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                Log.i(TAG, "Successfully wrote to characteristic ${descriptor.uuid}")
+                Log.i(TAG, "Successfully wrote to descriptor ${descriptor.uuid}")
             } else {
-                val msg = "Characteristic write failed for ${descriptor.uuid}, status: $status"
+                val msg = "Descriptor write failed for ${descriptor.uuid}, status: $status"
                 Log.e(TAG, msg)
                 throw Exception(msg)
             }
