@@ -60,7 +60,7 @@ If you still want to enforce permission checks for descriptors:
 graph TD;
     app["📱 App Module"]
     home["🏠 Home Module<br>Scan & Connect"]
-    control["🎛️ Control Module<br>Connected Device Operations"]
+    control["🎛️ Control Module<br>Connected Device Ops"]
     ble["📡 BLE Module<br>Handles BLE API"]
 
     app --> home
