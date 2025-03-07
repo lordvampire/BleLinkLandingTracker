@@ -88,11 +88,10 @@ fun ControlScreen(
             }
         }
     }
-
-
     when (uiState) {
         is ControlUiState.Data -> {
             val data = (uiState as ControlUiState.Data)
+
             ControlScreenContent(
                 deviceName = data.deviceName,
                 deviceAddress = data.deviceAddress,
@@ -105,7 +104,7 @@ fun ControlScreen(
                 onEnableCharacteristicNotifications = onEnableCharacteristicNotifications,
                 onReconnectClick = connectToDeviceGatt,
                 onBackClick = onBackClick,
-                snackbarHostState =  snackbarHostState,
+                snackbarHostState = snackbarHostState,
             )
         }
 
@@ -172,7 +171,7 @@ fun ControlScreenContent(
                     }
                 }
             )
-        }, snackbarHost={
+        }, snackbarHost = {
             SnackbarHost(
                 snackbarHostState,
                 modifier = Modifier.safeDrawingPadding()
@@ -314,7 +313,7 @@ fun ServiceItem(
                         onReadDescriptor = onReadDescriptor,
                         onWriteDescriptor = onWriteDescriptor,
                         onEnableCharacteristicNotifications = onEnableCharacteristicNotifications,
-                        snackbarHostState= snackbarHostState,
+                        snackbarHostState = snackbarHostState,
                         coroutineScope = coroutineScope
                     )
                 }
@@ -477,7 +476,8 @@ fun CharacteristicItem(
                                             } catch (e: Exception) {
                                                 coroutineScope.launch {
                                                     snackbarHostState.showSnackbar(
-                                                        message = "Failed to parse hex: ${e.message}")
+                                                        message = "Failed to parse hex: ${e.message}"
+                                                    )
                                                 }
                                                 byteArrayOf()
                                             }
@@ -680,7 +680,8 @@ fun DescriptorItem(
                                             } catch (e: Exception) {
                                                 coroutineScope.launch {
                                                     snackbarHostState.showSnackbar(
-                                                        message = "Failed to parse hex: ${e.message}")
+                                                        message = "Failed to parse hex: ${e.message}"
+                                                    )
                                                 }
                                                 byteArrayOf()
                                             }

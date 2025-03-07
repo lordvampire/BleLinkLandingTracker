@@ -58,7 +58,7 @@ class BluetoothLeConnect @Inject constructor(
     fun connectToDeviceGatt(deviceAddress: String) {
         _connectionState.value = BluetoothProfile.STATE_CONNECTING
         val device = _bluetoothAdapter?.getRemoteLeDevice(deviceAddress, ADDRESS_TYPE_PUBLIC)
-       // device?.createBond() //Automatically created
+        // device?.createBond() //Automatically created
         if (device?.bondState == BluetoothDevice.BOND_BONDED) {
             Log.i(TAG, "Device is bonded!")
         } else {
@@ -83,12 +83,11 @@ class BluetoothLeConnect @Inject constructor(
 
 
     @RequiresPermission(allOf = [Manifest.permission.BLUETOOTH_CONNECT])
-    //TODO: TRY READING INV UUID
     fun readCharacteristic(characteristicUUID: UUID) {
         val characteristic = _availableCharacteristics[characteristicUUID]
         val successfulOp = _bluetoothGatt?.readCharacteristic(characteristic)
         if (successfulOp == false) {
-            val msg = "Reading from descriptor: $characteristicUUID went wrong"
+            val msg = "Reading from Characteristic: $characteristicUUID went wrong"
             Log.i(TAG, msg)
             throw Exception(msg)
         }
@@ -125,11 +124,10 @@ class BluetoothLeConnect @Inject constructor(
 
 
     @RequiresPermission(allOf = [Manifest.permission.BLUETOOTH_CONNECT])
-    //TODO: TRY READING INV UUID
     fun readDescriptor(characteristicUUID: UUID, descriptorUUID: UUID) {
         val characteristic = _availableCharacteristics[characteristicUUID]
         if (characteristic != null) {
-            val descriptor = characteristic.getDescriptor(descriptorUUID) // TODO: WHAT if null?
+            val descriptor = characteristic.getDescriptor(descriptorUUID)
             val successfulOp = _bluetoothGatt?.readDescriptor(descriptor)
             if (successfulOp == false) {
                 val msg = "Reading from descriptor: $descriptorUUID went wrong"
@@ -148,7 +146,7 @@ class BluetoothLeConnect @Inject constructor(
     fun writeDescriptor(characteristicUUID: UUID, descriptorUUID: UUID, value: ByteArray) {
         val characteristic = _availableCharacteristics[characteristicUUID]
         if (characteristic != null) {
-            val descriptor = characteristic.getDescriptor(descriptorUUID) // TODO WHAT IF NULL?
+            val descriptor = characteristic.getDescriptor(descriptorUUID)
             val statusCode = _bluetoothGatt?.writeDescriptor(descriptor, value)
             if (statusCode != 0) {
                 val msg =
@@ -309,6 +307,8 @@ class BluetoothLeConnect @Inject constructor(
                 TAG,
                 "Characteristic ${characteristic.uuid} changed its value to:\n${value.toHexString()}"
             )
+
+
             val newList = _deviceServices.value.map { customGattService ->
                 customGattService.copy(characteristics = customGattService.characteristics.map {
                     if (it.uuid == characteristic.uuid)

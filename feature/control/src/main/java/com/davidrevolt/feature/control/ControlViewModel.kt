@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.davidrevolt.core.ble.BluetoothLeService
 import com.davidrevolt.core.ble.model.CustomGattService
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asSharedFlow
@@ -34,7 +35,7 @@ class ControlViewModel @Inject constructor(
         bluetoothLeService.getDeviceServices()
     ) { connectionState, deviceServices ->
         ControlUiState.Data(
-            deviceName=bleDeviceName,
+            deviceName = bleDeviceName,
             deviceAddress = bleDeviceAddress,
             connectionState = connectionState,
             deviceServices = deviceServices
@@ -74,6 +75,7 @@ class ControlViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 bluetoothLeService.writeCharacteristic(characteristicUUID, value)
+                delay(5000)
             } catch (e: Exception) {
                 _uiEvent.emit(UiEvent.ShowSnackbar("${e.message}"))
             }
@@ -111,14 +113,12 @@ class ControlViewModel @Inject constructor(
         }
     }
 
+
     override fun onCleared() {
         super.onCleared()
         bluetoothLeService.disconnectFromGatt()
     }
 
-    companion object {
-        const val TAG = "BleLink-Log"
-    }
 }
 
 sealed interface ControlUiState {
