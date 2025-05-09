@@ -24,8 +24,9 @@ fun DataScreen(
     val characteristicData by viewModel.characteristicData.collectAsStateWithLifecycle()
 
  Box(
-            .fillMaxSize()
-            .padding(16.dp),
+            modifier = Modifier
+ .fillMaxSize()
+ .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
         // Display the characteristic data in a large text format
