@@ -63,7 +63,8 @@ import java.util.UUID
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun ControlScreen(
-    onBackClick: () -> Unit,
+ onBackClick: () -> Unit,
+    onNavigateToData: (String, String) -> Unit,
     viewModel: ControlViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.controlUiState.collectAsStateWithLifecycle()
@@ -104,6 +105,7 @@ fun ControlScreen(
                 onEnableCharacteristicNotifications = onEnableCharacteristicNotifications,
                 onReconnectClick = connectToDeviceGatt,
                 onBackClick = onBackClick,
+                onNavigateToData = onNavigateToData,
                 snackbarHostState = snackbarHostState,
             )
         }
@@ -133,6 +135,7 @@ fun ControlScreenContent(
     onWriteDescriptor: (UUID, UUID, ByteArray) -> Unit,
     onEnableCharacteristicNotifications: (UUID) -> Unit,
     onReconnectClick: () -> Unit,
+    onNavigateToData: (String, String) -> Unit,
     onBackClick: () -> Unit,
     snackbarHostState: SnackbarHostState,
 ) {
@@ -312,6 +315,7 @@ fun ServiceItem(
                         onWriteCharacteristic = onWriteCharacteristic,
                         onReadDescriptor = onReadDescriptor,
                         onWriteDescriptor = onWriteDescriptor,
+                                    onNavigateToData = onNavigateToData,
                         onEnableCharacteristicNotifications = onEnableCharacteristicNotifications,
                         snackbarHostState = snackbarHostState,
                         coroutineScope = coroutineScope
@@ -340,6 +344,7 @@ fun CharacteristicItem(
     onWriteCharacteristic: (characteristicUUID: UUID, value: ByteArray) -> Unit,
     onReadDescriptor: (characteristicUUID: UUID, descriptorUUID: UUID) -> Unit,
     onWriteDescriptor: (characteristicUUID: UUID, descriptorUUID: UUID, value: ByteArray) -> Unit,
+    onNavigateToData: (String, String) -> Unit,
     onEnableCharacteristicNotifications: (characteristicUUID: UUID) -> Unit,
     snackbarHostState: SnackbarHostState,
     coroutineScope: CoroutineScope
@@ -523,6 +528,15 @@ fun CharacteristicItem(
                         ) {
                             Text(text = "Notify")
                         }
+                    }
+                    Button(
+                        onClick = {
+                            onNavigateToData(characteristic.deviceAddress, characteristic.uuid.toString())
+                        },
+                        shape = RoundedCornerShape(8.dp),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("View Data")
                     }
                 }
             }

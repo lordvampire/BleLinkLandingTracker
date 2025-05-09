@@ -12,6 +12,8 @@ import androidx.navigation.navArgument
 const val DEVICE_NAME = "deviceName"
 const val DEVICE_ADDRESS = "deviceAddress"
 const val CONTROL_ROUTE = "control_route/deviceName={deviceName}/deviceAddress={deviceAddress}"
+const val DATA_SCREEN_ROUTE = "data_screen/{deviceAddress}/{characteristicUuid}"
+
 
 fun NavController.navigateToControl(
     deviceName: String,
@@ -24,6 +26,15 @@ fun NavController.navigateToControl(
     )
 }
 
+fun NavController.navigateToDataScreen(
+    deviceAddress: String,
+    characteristicUuid: String,
+    navOptions: NavOptions? = null
+) {
+    this.navigate(
+        "data_screen/${deviceAddress}/${characteristicUuid}", navOptions
+    )
+}
 
 @RequiresApi(Build.VERSION_CODES.S)
 fun NavGraphBuilder.controlScreen(onBackClick: () -> Unit) {
@@ -40,5 +51,15 @@ fun NavGraphBuilder.controlScreen(onBackClick: () -> Unit) {
         }
     )) {
         ControlScreen(onBackClick = onBackClick)
+    }
+
+    composable(
+        route = DATA_SCREEN_ROUTE, arguments = listOf(
+            navArgument("deviceAddress") { type = NavType.StringType },
+            navArgument("characteristicUuid") { type = NavType.StringType }
+        )
+    ) { backStackEntry ->
+        val deviceAddress = backStackEntry.arguments?.getString("deviceAddress") ?: ""
+        val characteristicUuid = backStackEntry.arguments?.getString("characteristicUuid") ?: ""
     }
 }
