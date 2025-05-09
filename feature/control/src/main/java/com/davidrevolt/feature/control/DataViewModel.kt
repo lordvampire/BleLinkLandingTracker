@@ -26,8 +26,8 @@ class DataViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            bluetoothLeService.getCharacteristicData(deviceAddress, UUID.fromString(characteristicUuid)).collect { data ->
-                _characteristicData.value = data
+            bluetoothLeService.observeCharacteristic(deviceAddress, UUID.fromString(characteristicUuid)).collect { data ->
+                _characteristicData.value = data?.toString(Charsets.UTF_8)
             }
         }
     }

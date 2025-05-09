@@ -1,6 +1,7 @@
 package com.davidrevolt.feature.control
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -18,12 +19,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun DataScreen(
     deviceAddress: String,
     characteristicUuid: String,
-    viewModel: DataViewModel = hiltViewModel()
-){
+    viewModel: DataViewModel = hiltViewModel<DataViewModel>()
+) {
     val characteristicData by viewModel.characteristicData.collectAsStateWithLifecycle()
 
-        Box(
-        modifier = Modifier
+ Box(
             .fillMaxSize()
             .padding(16.dp),
         contentAlignment = Alignment.Center
@@ -31,7 +31,7 @@ fun DataScreen(
         // Display the characteristic data in a large text format
         Text(
             text = characteristicData,
-            fontSize = 48.sp,
+            fontSize = 60.sp,
             fontWeight = FontWeight.Bold
         )
     }

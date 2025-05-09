@@ -64,7 +64,6 @@ import java.util.UUID
 @Composable
 fun ControlScreen(
  onBackClick: () -> Unit,
- onNavigateToData: (String, String) -> Unit,
     //viewModel: ControlViewModel = hiltViewModel(key = )
     viewModel: ControlViewModel = hiltViewModel()
 ) {
@@ -105,7 +104,7 @@ fun ControlScreen(
                 onWriteDescriptor = onWriteDescriptor,
                 onEnableCharacteristicNotifications = onEnableCharacteristicNotifications,
                 onReconnectClick = connectToDeviceGatt,
-                onBackClick = onBackClick,
+                onBackClick = onBackClick, // Fix: Use the passed onBackClick
                 onNavigateToData = onNavigateToData,
                 snackbarHostState = snackbarHostState,
             )
