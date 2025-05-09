@@ -64,7 +64,8 @@ import java.util.UUID
 @Composable
 fun ControlScreen(
  onBackClick: () -> Unit,
-    onNavigateToData: (String, String) -> Unit,
+ onNavigateToData: (String, String) -> Unit,
+    //viewModel: ControlViewModel = hiltViewModel(key = )
     viewModel: ControlViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.controlUiState.collectAsStateWithLifecycle()

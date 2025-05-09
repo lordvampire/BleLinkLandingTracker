@@ -37,7 +37,10 @@ fun NavController.navigateToDataScreen(
 }
 
 @RequiresApi(Build.VERSION_CODES.S)
-fun NavGraphBuilder.controlScreen(onBackClick: () -> Unit) {
+fun NavGraphBuilder.controlScreen(
+ onBackClick: () -> Unit,
+    onNavigateToData: (String, String) -> Unit
+) {
     composable(route = CONTROL_ROUTE, arguments = listOf(
         navArgument(DEVICE_NAME) {
             type = NavType.StringType
@@ -50,7 +53,10 @@ fun NavGraphBuilder.controlScreen(onBackClick: () -> Unit) {
             //nullable = true  // if no args -> set query to null [not needed because defaultValue is set]
         }
     )) {
-        ControlScreen(onBackClick = onBackClick)
+ ControlScreen(
+            onBackClick = onBackClick,
+ onNavigateToData = onNavigateToData
+ )
     }
 
     composable(
